@@ -24,3 +24,17 @@
 .bottom-footer {
 	margin-top: 40px;
 }
+.calc-button {
+	max-width: 20px;
+}
+.calc-row {
+	margin-top: 25px;
+	margin-left: 20px;
+}
+#zero {
+	max-width: 130px;
+}
+#equal {
+	padding-bottom: 55px;
+	margin-bottom: -140px;
+}
