@@ -32,9 +32,12 @@
 	margin-left: 20px;
 }
 #zero {
-	max-width: 130px;
+	max-width: 128px;
 }
 #equal {
-	padding-bottom: 55px;
-	margin-bottom: -140px;
+	padding-bottom: 20px;
+	margin-bottom: -180px;
+}
+#equal-icon{
+	padding-top: 25px;
 }
