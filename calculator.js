@@ -24,6 +24,7 @@ var equalButton = document.getElementById('equal');
 var outputBox = document.getElementById('textbox');
 
 outputBox.value = "0";
+
 // event listeners
 oneButton.addEventListener('click', setNumber, false);
 twoButton.addEventListener('click', setNumber, false);
@@ -36,7 +37,22 @@ eightButton.addEventListener('click', setNumber, false);
 nineButton.addEventListener('click', setNumber, false);
 zeroButton.addEventListener('click', setNumber, false);
 decimalButton.addEventListener('click', appendDecimal, false);
+acButton.addEventListener('click', acClear, false);
+divideButton.addEventListener('click', setOperand, false);
+multiplyButton.addEventListener('click', setOperand, false);
+subtractButton.addEventListener('click', setOperand, false);
+addButton.addEventListener('click', setOperand, false);
 
+function setOperand() {
+	return console.log(this.innerHTML);
+};
+
+function acClear() {
+	if(outputBox.value !== "0") {
+		outputBox.innerHTML = "0";
+		outputBox.value = "0";
+	}
+};
 
 function setNumber(){
 	return appendNumber(this.innerHTML);
