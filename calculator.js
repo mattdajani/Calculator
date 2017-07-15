@@ -22,6 +22,9 @@ var ceButton = document.getElementById('ce');
 var decimalButton = document.getElementById('decimal');
 var equalButton = document.getElementById('equal');
 var outputBox = document.getElementById('textbox');
+var historyBox = document.getElementById('history');
+
+var val1, val2;
 
 outputBox.value = "0";
 
@@ -42,15 +45,34 @@ divideButton.addEventListener('click', setOperand, false);
 multiplyButton.addEventListener('click', setOperand, false);
 subtractButton.addEventListener('click', setOperand, false);
 addButton.addEventListener('click', setOperand, false);
+equalButton.addEventListener('click', calculate, false);
+
+
+// temporary rough logic, clean up
+function calculate() {
+	val2 = parseFloat(outputBox.value);
+	var result = eval(val1 + historyBox.innerHTML + val2);
+	outputBox.innerHTML = result;
+	outputBox.value = result;
+	historyBox.innerHTML = "";
+}
 
 function setOperand() {
-	return console.log(this.innerHTML);
+	historyBox.innerHTML = this.innerHTML;
+	if(outputBox.value !== "0") {
+		val1 = parseFloat(outputBox.value);
+		outputBox.innerHTML = "0";
+		outputBox.value = "0";
+	}
 };
 
 function acClear() {
 	if(outputBox.value !== "0") {
 		outputBox.innerHTML = "0";
 		outputBox.value = "0";
+		val1 = "0";
+		val2 = "0";
+		historyBox.innerHTML = "";
 	}
 };
 
@@ -88,10 +110,10 @@ function appendNumber(value) {
 
 
 // callback for calculate example below
-function calculate(num1, num2, callback){
-	return callback(num1, num2);
-}
+// function calculate(num1, num2, callback){
+// 	return callback(num1, num2);
+// }
 
-function add(a, b){
-	return a + b;
-}
+// function add(a, b){
+// 	return a + b;
+// }
