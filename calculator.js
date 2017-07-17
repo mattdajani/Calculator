@@ -24,7 +24,7 @@ var equalButton = document.getElementById('equal');
 var outputBox = document.getElementById('textbox');
 var historyBox = document.getElementById('history');
 
-var val1, val2;
+var val1 = null, val2 = null;
 
 outputBox.value = "0";
 
@@ -48,21 +48,33 @@ addButton.addEventListener('click', setOperand, false);
 equalButton.addEventListener('click', calculate, false);
 
 
-// temporary rough logic, clean up
+
+function chain() {
+	val2 = parseFloat(outputBox.value);
+	var result = eval(val1 + historyBox.innerHTML + val2);
+	outputBox.innerHTML = result;
+	outputBox.value = result;
+}
+// temporary rough logic, clean up, possibly remove eval and make own function
 function calculate() {
 	val2 = parseFloat(outputBox.value);
 	var result = eval(val1 + historyBox.innerHTML + val2);
 	outputBox.innerHTML = result;
 	outputBox.value = result;
 	historyBox.innerHTML = "";
+	// fix chaining of calculate
 }
 
-function setOperand() {
+function setOperand() { // fix to work for chaining
 	historyBox.innerHTML = this.innerHTML;
-	if(outputBox.value !== "0") {
+	if(outputBox.value !== "0" && val1 === null) {
 		val1 = parseFloat(outputBox.value);
-		outputBox.innerHTML = "0";
-		outputBox.value = "0";
+		outputBox.innerHTML = "";
+		outputBox.value = "";
+	}
+	else if(val1 !== null) {
+		console.log('chaining');
+		chain(); // needs chain function
 	}
 };
 
@@ -70,8 +82,8 @@ function acClear() {
 	if(outputBox.value !== "0") {
 		outputBox.innerHTML = "0";
 		outputBox.value = "0";
-		val1 = "0";
-		val2 = "0";
+		val1 = null;
+		val2 = null;
 		historyBox.innerHTML = "";
 	}
 };
